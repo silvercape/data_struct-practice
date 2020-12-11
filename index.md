@@ -1,37 +1,89 @@
-## Welcome to GitHub Pages
+#### 先序遍历
 
-You can use the [editor on GitHub](https://github.com/silvercape/data_struct-practice/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```c++
+void gotoleft(TreeNode* p,stack<TreeNode*> &s) {
+	while (p)
+	{
+		cout << p->data << " ";
+		s.push(p->rightchild);
+		p = p->leftchild;
+	}
+}
+void pre_traversal(TreeNode* root) {
+	stack<TreeNode*> s;
+	while (true)
+	{
+		gotoleft(root, s);
+		if (s.empty()) break;
+		root = s.top();
+		s.pop();
+	}
+}
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+```c++
+void pre_trsversal(TreeNode* x)
+{
+	stack<TreeNode*> s;
+    s.push(x);
+    while(!s.empty())
+    {
+        x=s.top();
+        s.pop();
+        if(x==NULL)
+        {
+            continue;
+        }
+        else
+        {
+            cout<<x->data<<" ";
+            s.push(x->rightchild);
+            s.push(x->leftchild);
+        }
+    }
+        
+}
+```
 
-### Jekyll Themes
+#### 中序遍历
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/silvercape/data_struct-practice/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```c++
+void gotoleft(TreeNode* p,stack<TreeNode*> &s) {
+	while (p)
+	{
+		s.push(p);
+		p = p->leftchild;
+	}
+}
+void in_traversal(TreeNode* root) {
+	stack<TreeNode*> s;
+	while (true)
+	{
+		gotoleft(root, s);
+		if (s.empty()) break;
+		root = s.top();
+		s.pop();
+		cout << root->data << " ";
+		root = root->rightchild;
+	}
+}
+```
 
-### Support or Contact
+#### 层次遍历
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+```c++
+void cengcibianli(TreeNode* x) {
+	queue<TreeNode*> q;
+	q.push(x);
+	while (true)
+	{
+		x = q.front();
+		q.pop();
+		cout << x->data << " ";
+		if (x->leftchild) q.push(x->leftchild);
+		if (x->rightchild) q.push(x->rightchild);
+		if (q.empty()) break;
+	}
+}
+```
+
